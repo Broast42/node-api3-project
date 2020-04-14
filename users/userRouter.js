@@ -44,8 +44,14 @@ router.get('/:id', validateUserId(), (req, res) => {
     })
 });
 
-router.get('/:id/posts', (req, res) => {
-  // do your magic!
+router.get('/:id/posts', validateUserId(), (req, res) => {
+  users.getUserPosts(req.params.id)
+  .then(results =>{
+    res.status(200).json(results)
+  })
+  .catch(error => {
+    next(error)
+  })
 });
 
 router.delete('/:id', (req, res) => {
