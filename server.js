@@ -1,5 +1,6 @@
 const express = require('express');
 const usersRouter = require('./users/userRouter')
+const postsRouter = require('./posts/postRouter')
 
 const server = express();
 
@@ -12,6 +13,7 @@ server.get('/', (req, res) => {
 });
 
 server.use("/users", usersRouter)
+server.use("/posts", postsRouter)
 
 //custom middleware
 
