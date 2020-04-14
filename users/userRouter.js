@@ -34,8 +34,14 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/:id', (req, res) => {
-  // do your magic!
+router.get('/:id', validateUserId(), (req, res) => {
+  users.getById(req.params.id)
+    .then((user) => {
+      res.status(200).json(user)
+    })
+    .catch(error => {
+      next(error)
+    })
 });
 
 router.get('/:id/posts', (req, res) => {
