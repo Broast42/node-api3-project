@@ -25,7 +25,13 @@ router.post('/:id/posts', validatePost(), validateUserId(), (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  // do your magic!
+  users.get()
+    .then((results) =>{
+      res.status(200).json(results)
+    })
+    .catch(error => {
+      next(error)
+    })
 });
 
 router.get('/:id', (req, res) => {
