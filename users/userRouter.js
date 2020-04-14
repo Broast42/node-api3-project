@@ -64,8 +64,14 @@ router.delete('/:id', validateUserId(), (req, res) => {
   })
 });
 
-router.put('/:id', (req, res) => {
-  // do your magic!
+router.put('/:id', validateUserId(), (req, res) => {
+  users.update(req.params.id, req.body)
+    .then(results => {
+      res.status(200).json(results)
+    })
+    .catch(error => {
+      next(error)
+    })
 });
 
 //custom middleware
