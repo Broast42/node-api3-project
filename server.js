@@ -1,10 +1,12 @@
 const express = require('express');
 const usersRouter = require('./users/userRouter')
 const postsRouter = require('./posts/postRouter')
+const cors = require('cors')
 
 const server = express();
 
 server.use(express.json())
+server.use(cors())
 
 server.use(logger)
 
